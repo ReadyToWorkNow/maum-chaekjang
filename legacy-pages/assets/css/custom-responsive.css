@@ -1,0 +1,348 @@
+/* Custom Responsive Fixes */
+
+/* 작은 화면에서 폼 요소 개선 */
+@media screen and (max-width: 736px) {
+    #storyForm .fields {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    #storyForm .field {
+        width: 100% !important;
+        margin: 0 0 1em 0 !important;
+    }
+
+    #storyForm input,
+    #storyForm select,
+    #storyForm textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* 동화책 이미지 반응형 */
+.storybook-page {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.storybook-page img,
+.image.main img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* 텍스트가 화면 밖으로 나가지 않도록 */
+.storybook-text,
+.storybook-text p,
+.post section p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* 로딩 메시지 반응형 */
+#loadingMessage {
+    max-width: 100%;
+    padding: 1em;
+    text-align: center;
+}
+
+/* 버튼 반응형 */
+@media screen and (max-width: 480px) {
+    .actions {
+        flex-direction: column !important;
+    }
+
+    .actions li {
+        width: 100% !important;
+        margin: 0.5em 0 !important;
+    }
+
+    .button {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+/* 매우 작은 화면 (모바일) */
+@media screen and (max-width: 360px) {
+    body {
+        font-size: 14px !important;
+    }
+
+    h1 {
+        font-size: 1.75em !important;
+    }
+
+    h2 {
+        font-size: 1.5em !important;
+    }
+
+    #intro h1 {
+        font-size: 2em !important;
+    }
+}
+
+/* 컨테이너가 화면을 넘지 않도록 */
+#wrapper,
+#main,
+.post {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* 이미지 컨테이너 */
+.image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/* Story tabs slider */
+.story-tabs { margin: 2rem 0; }
+.story-tabs .tab-buttons { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.story-tabs .tab-btn {
+  appearance: none; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.08);
+  color: inherit; padding: .6rem 1rem; border-radius: 6px; cursor: pointer;
+}
+.story-tabs .tab-btn.is-active { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.35); }
+
+.story-tabs .tab-panels-viewport { overflow: hidden; width: 100%; position: relative; }
+.story-tabs .tab-panels-track { display: flex; width: 200%; transition: transform .4s ease; will-change: transform; }
+.story-tabs .tab-panel { width: 100%; flex: 0 0 100%; }
+
+/* Panel 1 form: place fields side-by-side on wide screens */
+.story-tabs #panel-info .fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ==============================
+   Tab Buttons (Requested Style)
+   ============================== */
+.tab-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.tab-buttons .tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons .tab-btn:hover {
+  background: #e0e0e0;
+}
+
+.tab-buttons .tab-btn.is-active {
+  background: #ffae42;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+  .tab-buttons .tab-btn {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .story-tabs .tab-btn { padding: .5rem .75rem; font-size: .95rem; }
+}
+
+/* 탭 버튼 50%씩 */
+.tab-buttons {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.tab-buttons .tab-btn {
+  display: flex;                /* 수평·수직 정렬을 위해 flex로 변경 */
+  align-items: center;          /* 세로 중앙 */
+  justify-content: center;      /* 가로 중앙 */
+  text-align: center;           /* 텍스트 가운데 정렬 */
+  padding: 1rem 0;
+  text-align: center;
+  font-weight: 600;
+  background: #f6f6f6;
+  border: none;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.tab-buttons .tab-btn:hover { background: #ececec; }
+.tab-buttons .tab-btn.is-active {
+  background: #ffae42; /* 브랜드 주황 느낌 */
+  color: #fff;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
+}
+
+/* 입력 폼 2열 그리드 */
+.fields.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% / 50% */
+  gap: 20px;
+  align-items: start;
+}
+.fields.two-col .full {
+  grid-column: 1 / -1;
+}
+
+/* 폼 요소 폭 정리 */
+.fields.two-col .field input,
+.fields.two-col .field select,
+.fields.two-col .field textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 모바일 1열 전환 */
+@media (max-width: 900px) {
+  .fields.two-col { grid-template-columns: 1fr; }
+}
+
+/* number input width 복원 */
+.story-tabs input[type="number"] {
+  width: 100% !important;
+  min-width: 160px !important; /* 버튼 옆에서도 글씨칸 충분히 확보 */
+  box-sizing: border-box;
+}
+
+
+/* textarea + 마이크 버튼 가로 배치 */
+#panel-free .input-with-mic {
+  display: flex;
+  align-items: flex-start; /* 버튼 상단 정렬 */
+  gap: 12px;
+}
+
+/* textarea는 넓게 */
+#panel-free .input-with-mic textarea {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* 마이크 버튼 고정 크기 */
+#panel-free .input-with-mic .mic-btn {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* 모바일에선 세로 스택 */
+@media (max-width: 640px) {
+  #panel-free .input-with-mic {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #panel-free .input-with-mic .mic-btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+  }
+}
+
+/* === Panel 2: textarea + 마이크 버튼 + 안내문 가로 배치 === */
+
+/* 바깥 래퍼: 왼쪽(입력영역) + 오른쪽(안내문)을 한 줄로 */
+#panel-free .input-with-mic-and-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap; /* 공간 좁아지면 아래로 자연스럽게 줄바꿈 */
+}
+
+/* 왼쪽: textarea + 버튼 가로 배치 */
+#panel-free .input-with-mic {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 1 520px; /* 넓은 화면에서 충분히 공간 확보 */
+  min-width: 320px;
+}
+
+/* textarea는 넓게, 세로 리사이즈 허용 */
+#panel-free .input-with-mic textarea {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* 마이크 버튼 고정 크기 */
+#panel-free .input-with-mic .mic-btn {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* 오른쪽 안내문: 적당한 폭으로 줄바꿈 */
+#panel-free .inline-note {
+  flex: 0 1 260px;      /* 우측에 고정 폭 느낌으로 배치 */
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* 좁은 화면(모바일)에서는 세로 스택으로 전환 */
+@media (max-width: 800px) {
+  #panel-free .input-with-mic-and-note {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #panel-free .inline-note {
+    flex-basis: auto;
+    max-width: 100%;
+    margin-top: .5rem;
+  }
+  #panel-free .input-with-mic .mic-btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+  }
+}

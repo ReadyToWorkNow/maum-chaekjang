@@ -1,0 +1,30 @@
+{
+  "name": "save-with-fairytale",
+  "version": "1.0.0",
+  "description": "Healing storybook generator for abused children",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "tts": "node tts-server.js",
+    "dev": "nodemon server.js",
+    "dev:tts": "nodemon tts-server.js"
+  },
+  "keywords": [
+    "storybook",
+    "healing",
+    "children"
+  ],
+  "author": "404 not Found LAB",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "mysql2": "^3.15.3",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
