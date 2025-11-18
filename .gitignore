@@ -70,3 +70,9 @@ coverage/
 RENDER_API_KEY.md
 *_API_KEY.md
 *_API_KEY.txt
+
+# 배포 관련 내부 문서 (심사용 제외)
+render.yaml
+RENDER_DEPLOYMENT_GUIDE.md
+DEPLOYMENT.md
+frontend/README.md

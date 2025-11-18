@@ -210,16 +210,16 @@ Render Dashboard에서 각 서비스의 Environment 탭:
 
 ## 외부 서비스 연동
 
-### n8n 웹훅
-- **인증 검증**: `https://robotshin.app.n8n.cloud/webhook/check_real_code`
-- **음성 녹음 처리**: `https://robotshin.app.n8n.cloud/webhook/voice_recording`
+### n8n 워크플로우
+- 인증 코드 검증 자동화
+- 음성 데이터 처리 및 STT 변환
+- 동화 생성 파이프라인 관리
 
 ### Supabase Edge Functions
-- `process-story` - 스토리 라인 변환
-- `generate-story-images` - 이미지 생성
-- `generate-tts` - TTS 음성 변환
-- `audio-webhook-proxy` - 오디오 프록시
-- `auth-response-webhook` - 인증 웹훅
+- 스토리 라인 최적화 및 변환
+- DALL-E 3 이미지 생성 API 연동
+- Supertone TTS 음성 변환 처리
+- 오디오/인증 웹훅 프록시
 
 ---
 
