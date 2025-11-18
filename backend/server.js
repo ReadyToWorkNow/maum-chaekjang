@@ -55,7 +55,7 @@ app.use(cors({
 app.use(express.json({ limit: '2mb', type: 'application/json' }));
 
 // Legacy HTML 페이지 서빙
-app.use(express.static(path.join(__dirname, '../legacy-pages'), {
+app.use(express.static(path.join(__dirname, 'legacy-pages'), {
   setHeaders: (res, filePath) => {
     const ct = res.getHeader('Content-Type');
     if (ct && (/^text\//.test(ct) || ct.startsWith('application/javascript'))) {
