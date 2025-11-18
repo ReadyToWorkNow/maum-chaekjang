@@ -1,5 +1,5 @@
 // Supertone TTS Integration for Storybook
-console.log('🎤 Supertone TTS 로드됨!');
+console.log('[INFO] Supertone TTS loaded');
 
 class SupertoneTTS {
     constructor() {
@@ -28,7 +28,7 @@ class SupertoneTTS {
             // 한국어 음성만 로드
             this.voices = data.korean || [];
 
-            console.log(`✅ 한국어 음성 ${this.voices.length}개 로드됨`);
+            console.log(`[INFO] Loaded ${this.voices.length} Korean voices`);
 
             // 기본 음성 선택 (Sora 우선, 없으면 첫 번째 음성)
             if (this.voices.length > 0) {
@@ -41,12 +41,12 @@ class SupertoneTTS {
                     console.log(`기본 음성: ${this.voices[0].name} (${this.selectedVoice})`);
                 }
             } else {
-                console.warn('⚠️ 한국어 음성을 찾을 수 없습니다.');
+                console.warn('[WARN] No Korean voices found');
             }
 
             return this.voices;
         } catch (error) {
-            console.error('❌ 음성 목록 로드 실패:', error);
+            console.error('[ERROR] Failed to load voice list:', error);
             return [];
         }
     }
@@ -68,11 +68,11 @@ class SupertoneTTS {
             if (!response.ok) throw new Error('TTS 변환 실패');
 
             const data = await response.json();
-            console.log(`✅ TTS 변환 완료: ${data.filename}`);
+            console.log(`[INFO] TTS conversion completed: ${data.filename}`);
 
             return `${this.ttsOrigin}${data.audioUrl}`;
         } catch (error) {
-            console.error('❌ TTS 변환 실패:', error);
+            console.error('[ERROR] TTS conversion failed:', error);
             return null;
         }
     }
@@ -80,7 +80,7 @@ class SupertoneTTS {
     // 동화책 전체 페이지를 음성으로 변환
     async convertStorybook(pages) {
         try {
-            console.log(`📚 동화책 ${pages.length}페이지 TTS 변환 시작...`);
+            console.log(`[INFO] Starting TTS conversion for ${pages.length} pages...`);
 
             const response = await fetch(`${this.apiUrl}/convert-storybook`, {
                 method: 'POST',
@@ -98,7 +98,7 @@ class SupertoneTTS {
             const data = await response.json();
             const results = data.results;
 
-            console.log(`✅ 동화책 TTS 변환 완료: ${results.filter(r => r.success).length}/${pages.length}`);
+            console.log(`[INFO] Storybook TTS conversion completed: ${results.filter(r => r.success).length}/${pages.length}`);
 
             // 오디오 엘리먼트 생성
             results.forEach(result => {
@@ -111,7 +111,7 @@ class SupertoneTTS {
 
             return results;
         } catch (error) {
-            console.error('❌ 동화책 TTS 변환 실패:', error);
+            console.error('[ERROR] Storybook TTS conversion failed:', error);
             return null;
         }
     }
@@ -123,7 +123,7 @@ class SupertoneTTS {
 
         const audio = this.audioElements[pageNumber];
         if (audio) {
-            console.log(`▶️ 페이지 ${pageNumber} 재생`);
+            console.log(`[INFO] Playing page ${pageNumber}`);
             audio.play();
             this.isPlaying = true;
             this.currentPageIndex = pageNumber - 1;
@@ -144,7 +144,7 @@ class SupertoneTTS {
         // 동화책 페이지 정보 가져오기
         const storybookData = localStorage.getItem('currentStorybook');
         if (!storybookData) {
-            console.error('❌ 동화책 데이터를 찾을 수 없습니다.');
+            console.error('[ERROR] Cannot find storybook data');
             alert('동화책을 먼저 로드해주세요.');
             return;
         }
@@ -153,10 +153,10 @@ class SupertoneTTS {
 
         // 오디오가 아직 없으면 변환 먼저 수행
         if (Object.keys(this.audioElements).length === 0) {
-            console.log('📚 동화책 TTS 변환 시작...');
+            console.log('[INFO] Starting storybook TTS conversion...');
             alert('동화책을 음성으로 변환하고 있습니다. 잠시만 기다려주세요...');
             await this.convertStorybook(storybook.pages);
-            console.log('✅ TTS 변환 완료');
+            console.log('[INFO] TTS conversion completed');
         }
 
         this.playPage(1);
@@ -166,7 +166,7 @@ class SupertoneTTS {
     pause() {
         Object.values(this.audioElements).forEach(audio => audio.pause());
         this.isPlaying = false;
-        console.log('⏸️ 일시정지');
+        console.log('[INFO] Paused');
     }
 
     // 재개
@@ -176,7 +176,7 @@ class SupertoneTTS {
         if (audio) {
             audio.play();
             this.isPlaying = true;
-            console.log('▶️ 재개');
+            console.log('[INFO] Resumed');
         }
     }
 
@@ -187,12 +187,12 @@ class SupertoneTTS {
             audio.currentTime = 0;
         });
         this.isPlaying = false;
-        console.log('⏹️ 정지');
+        console.log('[INFO] Stopped');
     }
 
     // 오디오 종료 시 호출
     onAudioEnded(pageNumber) {
-        console.log(`✅ 페이지 ${pageNumber} 재생 완료`);
+        console.log(`[INFO] Page ${pageNumber} playback completed`);
 
         if (this.autoNext) {
             const nextPage = pageNumber + 1;
@@ -201,7 +201,7 @@ class SupertoneTTS {
                     this.playPage(nextPage);
                 }, CONFIG.TIMING.TTS_AUTO_NEXT_DELAY);
             } else {
-                console.log('📖 모든 페이지 재생 완료');
+                console.log('[INFO] All pages playback completed');
                 this.isPlaying = false;
             }
         }
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // 동화책 로드 이벤트 리스닝 (이벤트가 발생하면 페이지 정보 업데이트)
     document.addEventListener('storybook-loaded', async function(e) {
-        console.log('📖 동화책 로드됨');
+        console.log('[INFO] Storybook loaded');
         const storybook = e.detail.storybook;
         supertoneTTS.pages = storybook.pages;
     });
@@ -307,7 +307,7 @@ function setupSupertoneTTSControls() {
         });
     }
 
-    console.log('✅ Supertone TTS 컨트롤 설정 완료');
+    console.log('[INFO] Supertone TTS controls setup completed');
 }
 
-console.log('✅ Supertone TTS 스크립트 로드 완료');
+console.log('[INFO] Supertone TTS script loaded');

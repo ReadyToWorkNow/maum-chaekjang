@@ -41,18 +41,18 @@ const CreateInput = () => {
           
           try {
             const webhookResponse = await recorderRef.current.sendToWebhook(audioBlob, WEBHOOK_URL);
-            console.log("✅ 웹훅 응답 성공:", webhookResponse);
-            
+            console.log("[INFO] Webhook response success:", webhookResponse);
+
             toast.success("전송 완료! 동화책 생성 중...");
-            
+
             // Navigate to loading page with the webhook response
-            navigate("/create_loading", { 
+            navigate("/create_loading", {
               state: { storyData: webhookResponse },
-              replace: true 
+              replace: true
             });
-            
+
           } catch (webhookError) {
-            console.error("❌ 웹훅 전송 실패:", webhookError);
+            console.error("[ERROR] Webhook transmission failed:", webhookError);
             toast.error("웹훅 전송에 실패했습니다. 다시 시도해주세요.");
           }
         }

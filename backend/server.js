@@ -81,8 +81,8 @@ app.use((req, res, next) => {
  * ------------------------------ */
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 if (!OPENAI_API_KEY) {
-  console.error('❌ OPENAI_API_KEY가 설정되지 않았습니다.');
-  console.log('👉 .env 파일에 다음을 추가하세요:\nOPENAI_API_KEY=your-key-here');
+  console.error('[ERROR] OPENAI_API_KEY is not configured.');
+  console.log('[INFO] Add the following to your .env file:\nOPENAI_API_KEY=your-key-here');
 }
 
 // Helper: save fetch Response body (web stream or node stream) to file
@@ -136,7 +136,7 @@ function safeParseStoryJson(raw) {
  * API: 동화 생성 (Chat Completions)
  * ------------------------------ */
 app.post('/api/generate-story', async (req, res) => {
-  console.log('📘 동화 생성 요청 수신');
+  console.log('[INFO] Story generation request received');
 
   try {
     const { formData } = req.body || {};
@@ -145,7 +145,7 @@ app.post('/api/generate-story', async (req, res) => {
     }
 
     const { childName, childAge, abuseType, childSituation, childInterests } = formData;
-    console.log('🧾 입력 데이터:', { childName, childAge, abuseType });
+    console.log('[INFO] Input data:', { childName, childAge, abuseType });
 
     const systemPrompt =
       '당신은 아동 심리를 이해하는 전문 동화 작가이자 동물 삽화 기획자입니다. 학대를 경험한 아이들을 위해 치유 동화를 작성하는 것이 당신의 임무입니다, 첫 페이지에서 만들어진 주인공의 종족, 종, 성별은 모든 이미지 작성 프롬프트에 추가하세요';
@@ -196,7 +196,7 @@ app.post('/api/generate-story', async (req, res) => {
 \`\`\`
 `;
 
-    console.log('📞 GPT API 호출 중...');
+    console.log('[INFO] Calling GPT API...');
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -251,7 +251,7 @@ app.post('/api/generate-story', async (req, res) => {
  * API: 이미지 생성 (DALL·E 3)
  * ------------------------------ */
 app.post('/api/generate-image', async (req, res) => {
-  console.log('🖼️ 이미지 생성 요청 수신');
+  console.log('[INFO] Image generation request received');
   try {
     const { prompt } = req.body || {};
     if (!prompt) return typeJson(res).status(400).json({ error: 'prompt가 필요합니다.' });
@@ -375,7 +375,7 @@ app.post('/api/tts/convert', async (req, res) => {
       { text, language, style, model },
       {
         headers: { 'x-sup-api-key': SUPERTONE_API_KEY, 'Content-Type': 'application/json' },
-        responseType: 'arraybuffer',      // 🔑 바이너리 응답
+        responseType: 'arraybuffer',      // Binary response
         validateStatus: () => true,
       }
     );
@@ -464,7 +464,7 @@ app.post('/api/tts/convert-storybook', async (req, res) => {
  * 서버 시작
  * ------------------------------ */
 app.listen(PORT, () => {
-  console.log(`🎤 Supertone TTS 서버 http://localhost:${PORT}`);
+  console.log(`[INFO] Supertone TTS Server running at http://localhost:${PORT}`);
   console.log(`GET  /api/tts/voices`);
   console.log(`POST /api/tts/convert`);
   console.log(`POST /api/tts/convert-storybook`);
@@ -478,7 +478,7 @@ app.listen(PORT, () => {
  * n8n 웹훅 프록시 (CORS 우회)
  * ------------------------------ */
 app.post('/api/proxy/voice-recording', async (req, res) => {
-  console.log('🎙️ 음성 녹음 웹훅 프록시 요청 수신');
+  console.log('[INFO] Voice recording webhook proxy request received');
 
   try {
     const n8nWebhookUrl = 'https://robotshin.app.n8n.cloud/webhook/voice_recording';

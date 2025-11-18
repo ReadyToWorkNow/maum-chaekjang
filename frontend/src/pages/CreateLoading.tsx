@@ -35,13 +35,13 @@ const CreateLoading = () => {
         return;
       }
 
-      console.log("📥 받은 웹훅 데이터:", storyData);
-      
+      console.log("[INFO] Received webhook data:", storyData);
+
       // 웹훅이 배열로 응답하는 경우 첫 번째 요소 추출
       const data = Array.isArray(storyData) ? storyData[0] : storyData;
       const storyLines = data?.lines || [];
-      
-      console.log("📝 추출된 Lines:", storyLines);
+
+      console.log("[INFO] Extracted Lines:", storyLines);
 
       try {
         setProgress(10);

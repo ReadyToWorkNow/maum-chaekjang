@@ -12,13 +12,13 @@ serve(async (req) => {
 
   try {
     const { storyLines } = await req.json();
-    console.log("📥 process-story 받은 데이터:", storyLines);
-    console.log("📊 데이터 타입:", typeof storyLines, Array.isArray(storyLines));
-    
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    console.log("process-story received data:", storyLines);
+    console.log("Data type:", typeof storyLines, Array.isArray(storyLines));
+
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
+
+    if (!OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY is not configured");
     }
 
     const systemPrompt = `당신은 아동용 동화에 들어갈 전문 삽화가 및 글 편집자입니다.
@@ -33,16 +33,16 @@ serve(async (req) => {
 - 캐릭터의 일관성을 유지하도록 프롬프트를 작성합니다`;
 
     const userPrompt = `다음 스토리를 동화책 형식으로 변환해주세요:\n\n${storyLines.join('\n')}`;
-    console.log("💬 AI에게 전달할 프롬프트:", userPrompt);
+    console.log("AI prompt:", userPrompt);
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt }
@@ -104,8 +104,8 @@ serve(async (req) => {
     }
 
     const pages = JSON.parse(toolCall.function.arguments).pages;
-    console.log("✅ 생성된 페이지 수:", pages.length);
-    console.log("📄 첫 페이지 샘플:", pages[0]);
+    console.log("Generated pages count:", pages.length);
+    console.log("First page sample:", pages[0]);
 
     return new Response(
       JSON.stringify({ pages }),

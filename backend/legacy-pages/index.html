@@ -160,26 +160,26 @@
             <div id="panel-free" class="tab-panel" role="tabpanel" aria-labelledby="tab-free">
               <form id="childStoryForm">
                 <div class="fields">
-                  <div class="field">
+                  <div class="field full">
                     <h2>직접 작성한 이야기</h2>
                     <label for="childFreeText">아이를 위한 글을 적어주세요</label>
 
-                    <!-- 한 줄 가로 배치 컨테이너 --> 
+                    <!-- textarea + 마이크 버튼 컨테이너 -->
+                    <div style="position: relative; margin-bottom: 1em;">
+                      <textarea id="childFreeText" rows="8" placeholder="직접 아이에게 전하고 싶은 말을 적어주세요." style="width: 100%; padding-right: 60px;"></textarea>
+                      <button type="button" id="micBtn" class="mic-btn" aria-pressed="false" title="음성으로 입력"
+                        style="position: absolute; top: 10px; right: 10px; width: 45px; height: 45px; border-radius: 50%; border: 2px solid #ddb45b; background: #ffffff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        MIC
+                      </button>
+                    </div>
 
-                        <textarea id="childFreeText" rows="6" placeholder="직접 아이에게 전하고 싶은 말을 적어주세요."></textarea>
+                    <!-- 상태 메시지 -->
+                    <small id="micStatus" aria-live="polite" style="display:block; margin-bottom: 0.8em; color:#667eea; font-weight: 500; min-height: 20px;"></small>
 
-                        <button type="button" id="micBtn" class="mic-btn" aria-pressed="false" title="음성으로 입력">
-                          🎙️
-                        </button>
-
-
-                      <!-- 오른쪽 안내문 (같은 줄) -->
-                      <p id="inlineNote" class="inline-note" style="margin:0;">
-                        입력하신 내용은 검토 후 동화로 재구성되며, 개인정보는 저장되지 않습니다.
-                      </p>
-
-                    <!-- 상태 메시지 (스크린리더 우선 안내) -->
-                    <small id="micStatus" aria-live="polite" style="display:block; margin-top:6px; color:#666;"></small>
+                    <!-- 안내문 -->
+                    <p style="margin:0; padding: 0.8em 1em; background: #f8f9fa; border-left: 3px solid #ddb45b; border-radius: 4px; font-size: 0.9em; color: #666;">
+                      [INFO] 입력하신 내용은 검토 후 동화로 재구성되며, 개인정보는 저장되지 않습니다.
+                    </p>
                   </div>
                 </div>
 
