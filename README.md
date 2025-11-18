@@ -187,16 +187,23 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 프로젝트는 Render를 통해 배포되어 실제 서비스 중입니다.
 
-**데모 사이트**: https://story-frontend-ozbq.onrender.com
+**데모 사이트**: https://story-backend-51cl.onrender.com
 
 ### 테스트 방법
 
-1. 데모 사이트 접속
-2. 인증 코드 입력 (다음 중 하나 사용)
+**플로우 1: 폼 기반 동화 생성**
+1. [데모 사이트](https://story-backend-51cl.onrender.com) 접속
+2. 아동 정보 입력 (이름, 나이, 학대 유형 등)
+3. "치유 동화 만들기" 버튼 클릭
+
+**플로우 2: 음성 기반 동화 생성**
+1. [데모 사이트](https://story-backend-51cl.onrender.com) 접속
+2. "동화 만들러가기 (음성)" 버튼 클릭
+3. 인증 코드 입력 (다음 중 하나 사용)
    - `storytest`
    - `maum2025`
    - `404notfound`
-3. 음성 녹음 또는 텍스트 입력으로 동화 생성 체험
+4. 음성 녹음으로 동화 생성 체험
 
 ---
 
