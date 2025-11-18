@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { StoryPage } from "@/types/storybook";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 const loadingMessages = [
   "이야기를 분석하는중...",
@@ -48,12 +49,19 @@ const CreateLoading = () => {
         setCurrentIndex(0);
 
         // Step 1: Process story into pages
-        const { data: pagesData, error: processError } = await supabase.functions.invoke(
-          'process-story',
-          { body: { storyLines } }
-        );
+        const processResponse = await fetch(`${BACKEND_URL}/api/process-story`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ storyLines }),
+        });
 
-        if (processError) throw processError;
+        if (!processResponse.ok) {
+          throw new Error(`페이지 생성 실패: ${processResponse.statusText}`);
+        }
+
+        const pagesData = await processResponse.json();
         if (!pagesData?.pages) throw new Error("페이지 생성 실패");
 
         setProgress(30);
@@ -70,12 +78,19 @@ const CreateLoading = () => {
           const page = pages[i];
           
           try {
-            const { data: imageData, error: imageError } = await supabase.functions.invoke(
-              'generate-story-images',
-              { body: { imagePrompt: page.image_prompt } }
-            );
+            const imageResponse = await fetch(`${BACKEND_URL}/api/generate-story-images`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ imagePrompt: page.image_prompt }),
+            });
 
-            if (imageError) throw imageError;
+            if (!imageResponse.ok) {
+              throw new Error(`이미지 생성 실패: ${imageResponse.statusText}`);
+            }
+
+            const imageData = await imageResponse.json();
 
             pagesWithImages.push({
               ...page,
@@ -100,12 +115,19 @@ const CreateLoading = () => {
           const page = pagesWithImages[i];
           
           try {
-            const { data: ttsData, error: ttsError } = await supabase.functions.invoke(
-              'generate-tts',
-              { body: { text: page.text } }
-            );
+            const ttsResponse = await fetch(`${BACKEND_URL}/api/generate-tts-supertone`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ text: page.text }),
+            });
 
-            if (ttsError) throw ttsError;
+            if (!ttsResponse.ok) {
+              throw new Error(`TTS 생성 실패: ${ttsResponse.statusText}`);
+            }
+
+            const ttsData = await ttsResponse.json();
 
             if (ttsData?.audioContent) {
               // Base64를 Blob으로 변환
