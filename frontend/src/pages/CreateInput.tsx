@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { AudioRecorder } from "@/utils/audioRecorder";
 
-// n8n webhook URL (직접 전송)
-const WEBHOOK_URL = "https://robotshin.app.n8n.cloud/webhook/voice_recording";
+// Backend proxy URL (CORS 우회)
+const WEBHOOK_URL = "https://story-backend-51cl.onrender.com/api/proxy/voice-recording";
 
 const CreateInput = () => {
   const [isRecording, setIsRecording] = useState(false);

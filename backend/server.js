@@ -35,7 +35,7 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://story-frontend.onrender.com'
+  'https://story-frontend-ozbq.onrender.com'
 ].filter(Boolean);
 
 app.use(cors({
@@ -467,6 +467,43 @@ app.listen(PORT, () => {
 
 
 
+
+/* ------------------------------
+ * n8n 웹훅 프록시 (CORS 우회)
+ * ------------------------------ */
+app.post('/api/proxy/voice-recording', async (req, res) => {
+  console.log('🎙️ 음성 녹음 웹훅 프록시 요청 수신');
+
+  try {
+    const n8nWebhookUrl = 'https://robotshin.app.n8n.cloud/webhook/voice_recording';
+
+    // n8n 웹훅으로 요청 전달
+    const response = await fetch(n8nWebhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': req.headers['content-type'] || 'application/json',
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ n8n 웹훅 오류:', response.status, errorText);
+      return typeJson(res).status(response.status).json({
+        error: 'n8n 웹훅 호출 실패',
+        details: errorText
+      });
+    }
+
+    const data = await response.json();
+    console.log('✅ n8n 웹훅 응답 성공');
+
+    return typeJson(res).json(data);
+  } catch (error) {
+    console.error('❌ 웹훅 프록시 처리 오류:', error);
+    return typeJson(res).status(500).json({ error: error.message });
+  }
+});
 
 /* ------------------------------
  * MySQL (children) configuration (optional)
