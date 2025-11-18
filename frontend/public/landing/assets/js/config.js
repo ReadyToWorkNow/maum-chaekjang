@@ -92,4 +92,4 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { CONFIG, getUserFriendlyError };
 }
 
-console.log('🛠️ Config loaded');
+console.log('Config loaded');

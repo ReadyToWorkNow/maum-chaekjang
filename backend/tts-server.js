@@ -87,8 +87,8 @@ app.post('/api/tts/convert', async (req, res) => {
       { text, language, style, model },
       {
         headers: { 'x-sup-api-key': SUPERTONE_API_KEY, 'Content-Type': 'application/json' },
-        responseType: 'arraybuffer',      // 🔑 바이너리로 받기
-        validateStatus: () => true,       // 수동 오류 처리
+        responseType: 'arraybuffer',
+        validateStatus: () => true,
       }
     );
 
@@ -103,7 +103,7 @@ app.post('/api/tts/convert', async (req, res) => {
 
     const filename = `tts_${Date.now()}.${ext}`;
     const filepath = path.join(OUTPUT_DIR, filename);
-    fs.writeFileSync(filepath, Buffer.from(r.data)); // 🔑 파일 저장
+    fs.writeFileSync(filepath, Buffer.from(r.data));
 
     const audioLength = r.headers['x-audio-length'] || null;
     res.json({ audioUrl: `/audio/${filename}`, audioLength, filename });
@@ -169,7 +169,7 @@ app.post('/api/tts/convert-storybook', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🎤 Supertone TTS 서버 http://localhost:${PORT}`);
+  console.log(`Supertone TTS Server http://localhost:${PORT}`);
   console.log(`GET  /api/tts/voices`);
   console.log(`POST /api/tts/convert`);
   console.log(`POST /api/tts/convert-storybook`);

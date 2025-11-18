@@ -13,7 +13,7 @@ class StorybookNavigator {
         this.currentPageIndex = 0;
         this.navigationEnabled = true;
 
-        console.log(`📖 StorybookNavigator initialized with ${this.totalPages} pages`);
+        console.log(`Log: StorybookNavigator initialized with ${this.totalPages} pages`);
 
         // Setup keyboard navigation
         this.setupKeyboardNavigation();
@@ -76,7 +76,7 @@ class StorybookNavigator {
         contentContainer.appendChild(leftNav);
         contentContainer.appendChild(rightNav);
 
-        console.log('🖱️ Click navigation enabled');
+        console.log('Click: Click navigation enabled');
     }
 
     createPageIndicator() {
@@ -96,7 +96,7 @@ class StorybookNavigator {
 
         this.updatePageIndicator();
 
-        console.log('📊 Page indicator created');
+        console.log('PageIndicator: Page indicator created');
     }
 
     updatePageIndicator() {
@@ -143,14 +143,14 @@ class StorybookNavigator {
         // Emit event
         this.emitPageChangeEvent();
 
-        console.log(`📄 Showing page ${pageIndex + 1}/${this.totalPages}`);
+        console.log(`Page: Showing page ${pageIndex + 1}/${this.totalPages}`);
     }
 
     nextPage() {
         if (this.currentPageIndex < this.totalPages - 1) {
             this.showPage(this.currentPageIndex + 1);
         } else {
-            console.log('📖 Already at last page');
+            console.log('Log: Already at last page');
         }
     }
 
@@ -158,7 +158,7 @@ class StorybookNavigator {
         if (this.currentPageIndex > 0) {
             this.showPage(this.currentPageIndex - 1);
         } else {
-            console.log('📖 Already at first page');
+            console.log('Log: Already at first page');
         }
     }
 
@@ -215,7 +215,7 @@ window.storybookNavigator = null;
 document.addEventListener('DOMContentLoaded', function() {
     // Listen for storybook loaded event
     document.addEventListener('storybook-loaded', function(e) {
-        console.log('📖 Storybook loaded event received');
+        console.log('Log: Storybook loaded event received');
         const storybook = e.detail.storybook;
 
         window.storybookNavigator = new StorybookNavigator();
@@ -246,4 +246,4 @@ document.addEventListener('storybook-page-change', (e) => {
     console.log(`Page changed: ${e.detail.currentPage + 1}/${e.detail.totalPages}`);
 });
 
-console.log('📚 Storybook navigation script loaded');
+console.log('Navigation: Storybook navigation script loaded');

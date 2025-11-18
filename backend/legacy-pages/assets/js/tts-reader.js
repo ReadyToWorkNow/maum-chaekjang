@@ -88,7 +88,7 @@ class TTSReader {
             window.storybookNavigator.goToPage(pageIndex);
         }
 
-        console.log(`📖 Reading page ${pageIndex + 1}: ${page.title}`);
+        console.log(`Reading: Reading page ${pageIndex + 1}: ${page.title}`);
 
         // Create utterance
         this.utterance = new SpeechSynthesisUtterance();
@@ -141,7 +141,7 @@ class TTSReader {
                     }, CONFIG.TIMING.PAGE_TRANSITION_DELAY);
                 }, CONFIG.TIMING.TTS_AUTO_NEXT_DELAY);
             } else if (pageIndex === this.pages.length - 1) {
-                console.log('📖 Finished reading all pages');
+                console.log('Reading: Finished reading all pages');
             }
         };
 
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Listen for storybook loaded event
     document.addEventListener('storybook-loaded', function(e) {
-        console.log('📖 Storybook loaded event received');
+        console.log('Reading: Storybook loaded event received');
         setupTTSControls();
     });
 

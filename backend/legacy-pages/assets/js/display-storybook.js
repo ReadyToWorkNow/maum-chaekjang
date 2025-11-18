@@ -51,7 +51,7 @@ function loadAndDisplayStorybook() {
             detail: { storybook }
         });
         document.dispatchEvent(event);
-        console.log('📢 Storybook loaded event dispatched');
+        console.log('Event: Storybook loaded event dispatched');
 
     } catch (error) {
         console.error('Error loading storybook:', error);
