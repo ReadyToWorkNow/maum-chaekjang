@@ -18,57 +18,18 @@ const Auth = () => {
 
     setIsLoading(true);
 
-    // 재시도 로직: 최대 3번, 10초 타임아웃
-    const maxRetries = 3;
-    let lastError = null;
+    // 데모용 임시 인증 코드 (추후 n8n 워크플로우로 대체)
+    const validCodes = ['storytest', 'maum2025', '404notfound'];
 
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10초 타임아웃
+    // 약간의 로딩 효과
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-        // n8n 웹훅으로 인증 코드 검증
-        const response = await fetch('https://robotshin.app.n8n.cloud/webhook/check_real_code', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ authKey }),
-          signal: controller.signal
-        });
-
-        clearTimeout(timeoutId);
-
-        if (!response.ok) {
-          throw new Error(`서버 응답 오류: ${response.status}`);
-        }
-
-        const isValid = await response.json();
-
-        if (isValid) {
-          toast.success("인증 성공!");
-          navigate("/create_input");
-          return;
-        } else {
-          toast.error("유효하지 않은 인증 코드입니다");
-          setIsLoading(false);
-          return;
-        }
-      } catch (error) {
-        lastError = error;
-        console.error(`Auth attempt ${attempt}/${maxRetries} failed:`, error);
-
-        if (attempt < maxRetries) {
-          // 재시도 전 대기 (1초)
-          await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-      }
-    }
-
-    // 모든 재시도 실패
-    setIsLoading(false);
-    if (lastError instanceof Error && lastError.name === 'AbortError') {
-      toast.error("인증 서버 응답 시간이 초과되었습니다. 다시 시도해주세요.");
+    if (validCodes.includes(authKey.toLowerCase())) {
+      toast.success("인증 성공!");
+      navigate("/create_input");
     } else {
-      toast.error("인증 검증 중 오류가 발생했습니다. 네트워크 연결을 확인하고 다시 시도해주세요.");
+      toast.error("유효하지 않은 인증 코드입니다");
+      setIsLoading(false);
     }
   };
 

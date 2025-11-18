@@ -183,28 +183,13 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 ---
 
-## Render 배포
+## 배포 및 데모
 
-### 자동 배포 (Blueprint)
+프로젝트는 Render를 통해 배포되어 실제 서비스 중입니다.
 
-1. GitHub에 레포지토리 푸시
-2. Render Dashboard → "New" → "Blueprint"
-3. GitHub 레포지토리 연결
-4. `render.yaml` 자동 감지 및 배포 시작
+**데모 사이트**: https://story-frontend-ozbq.onrender.com
 
-### 수동 환경 변수 설정
-
-Render Dashboard에서 각 서비스의 Environment 탭:
-
-**Backend (story-backend):**
-- `OPENAI_API_KEY`
-- `SUPERTONE_API_KEY`
-- `FRONTEND_URL`
-
-**Frontend (story-frontend):**
-- `VITE_SUPABASE_PROJECT_ID`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
-- `VITE_SUPABASE_URL`
+음성 기반 동화 생성 기능을 직접 체험해보실 수 있습니다.
 
 ---
 
