@@ -189,7 +189,14 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 **데모 사이트**: https://story-frontend-ozbq.onrender.com
 
-음성 기반 동화 생성 기능을 직접 체험해보실 수 있습니다.
+### 테스트 방법
+
+1. 데모 사이트 접속
+2. 인증 코드 입력 (다음 중 하나 사용)
+   - `storytest`
+   - `maum2025`
+   - `404notfound`
+3. 음성 녹음 또는 텍스트 입력으로 동화 생성 체험
 
 ---
 
