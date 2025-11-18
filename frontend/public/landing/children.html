@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>아이 데이터 등록</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/custom-responsive.css" />
+</head>
+<body>
+  <div id="wrapper">
+    <header id="header"><a href="index.html" class="logo">메인으로</a></header>
+    <div id="main" class="post">
+      <header class="major"><h1>아이 데이터 등록</h1></header>
+      <section>
+        <form id="abusedChildForm">
+          <div class="fields">
+            <div class="field">
+              <label for="child_id">아동 ID</label>
+              <input id="child_id" type="number" placeholder="예: 206990" required />
+            </div>
+            <div class="field">
+              <label for="name">이름</label>
+              <input id="name" type="text" placeholder="예: 하린" required />
+            </div>
+            <div class="field">
+              <label for="age">나이</label>
+              <input id="age" type="number" min="0" max="18" required />
+            </div>
+            <div class="field">
+              <label for="gender">성별</label>
+              <select id="gender" required>
+                <option value="">선택</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="guardian_status">보호자 유형</label>
+              <select id="guardian_status">
+                <option value="none">none</option>
+                <option value="foster">foster</option>
+                <option value="relative">relative</option>
+                <option value="institution">institution</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="abuse_type">학대 유형</label>
+              <select id="abuse_type" required>
+                <option value="">선택</option>
+                <option value="verbal">verbal</option>
+                <option value="physical">physical</option>
+                <option value="sexual">sexual</option>
+                <option value="neglect">neglect</option>
+                <option value="emotional">emotional</option>
+                <option value="other">other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="discovered_at">발견일자</label>
+              <input id="discovered_at" type="date" required />
+            </div>
+            <div class="field">
+              <label for="rescued_by">구조자 / 기관명</label>
+              <input id="rescued_by" type="text" placeholder="예: 희망누리상담소" />
+            </div>
+            <div class="field">
+              <label for="recovery_stage">회복 단계</label>
+              <select id="recovery_stage">
+                <option value="stable">stable</option>
+                <option value="critical">critical</option>
+                <option value="recovering">recovering</option>
+                <option value="rehabilitated">rehabilitated</option>
+              </select>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="note">상세 메모</label>
+              <textarea id="note" rows="4" placeholder="상세 메모 및 상황 기록"></textarea>
+            </div>
+          </div>
+          <ul class="actions" style="margin-top:1rem">
+            <li><button type="submit" class="button primary">DB 저장</button></li>
+            <li><a href="index.html" class="button">동화 생성으로 가기</a></li>
+            <li><a href="https://story-frontend-ozbq.onrender.com/auth" class="button">동화 만들러가기 (음성)</a></li>
+          </ul>
+        </form>
+        <pre id="saveResult" style="white-space:pre-wrap"></pre>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('abusedChildForm');
+    const out = document.getElementById('saveResult');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault(); out.textContent = '';
+      const body = {
+        child_id: Number(document.getElementById('child_id').value),
+        name: document.getElementById('name').value.trim(),
+        age: Number(document.getElementById('age').value),
+        gender: document.getElementById('gender').value,
+        guardian_status: document.getElementById('guardian_status').value,
+        abuse_type: document.getElementById('abuse_type').value,
+        discovered_at: document.getElementById('discovered_at').value,
+        rescued_by: document.getElementById('rescued_by').value.trim(),
+        recovery_stage: document.getElementById('recovery_stage').value,
+        note: document.getElementById('note').value.trim(),
+      };
+      try {
+        const res = await fetch('/api/abused-child', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || res.statusText);
+        out.textContent = `저장 성공: #${data.child_id}`;
+      } catch (err) {
+        out.textContent = '저장 실패: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

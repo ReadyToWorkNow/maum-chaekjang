@@ -1,0 +1,271 @@
+/* TTS Reader Styles */
+
+/* TTS Controls Container */
+#tts-controls {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#tts-controls:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* TTS Buttons */
+#tts-controls .button {
+    margin: 0;
+    min-width: auto;
+    transition: all 0.2s ease;
+}
+
+#tts-controls .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#tts-controls .button:active {
+    transform: translateY(0);
+}
+
+/* Range Sliders */
+#tts-controls input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+}
+
+#tts-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#tts-controls input[type="range"]::-webkit-slider-thumb:hover {
+    width: 20px;
+    height: 20px;
+    background: #66BB6A;
+}
+
+#tts-controls input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+#tts-controls input[type="range"]::-moz-range-thumb:hover {
+    width: 20px;
+    height: 20px;
+    background: #66BB6A;
+}
+
+/* Reading Highlight Animation */
+.storybook-page {
+    transition: all 0.5s ease;
+}
+
+.storybook-page.tts-reading {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+    border-left: 4px solid #4CAF50;
+    padding-left: 2em !important;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    animation: pulse-reading 2s ease-in-out infinite;
+}
+
+@keyframes pulse-reading {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+    }
+}
+
+/* Current Page Indicator */
+#tts-current-page {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Voice Select */
+#tts-voice {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#tts-voice:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#tts-voice:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+/* Checkbox Styling */
+#tts-auto-next {
+    accent-color: #4CAF50;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 736px) {
+    #tts-controls {
+        padding: 1em;
+    }
+
+    #tts-controls h3 {
+        font-size: 1.2em;
+    }
+
+    #tts-controls .button {
+        font-size: 0.8em;
+        padding: 0.5em 0.8em;
+    }
+
+    #tts-controls > div:first-of-type {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    #tts-controls .button {
+        width: 100%;
+    }
+
+    #tts-current-page {
+        text-align: center;
+        margin-left: 0 !important;
+        margin-top: 0.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #tts-controls > div:last-of-type {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Loading Animation */
+.tts-loading {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #4CAF50;
+    border-radius: 50%;
+    animation: tts-spin 0.8s linear infinite;
+    margin-left: 0.5em;
+}
+
+@keyframes tts-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button Icons */
+#tts-controls .button span {
+    font-style: normal;
+    display: inline-block;
+}
+
+/* Play/Pause Icon Animation */
+#tts-play-pause-icon {
+    transition: transform 0.2s ease;
+}
+
+#tts-play-pause:active #tts-play-pause-icon {
+    transform: scale(1.2);
+}
+
+/* Progress Bar (Optional - can be added later) */
+.tts-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+.tts-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50 0%, #66BB6A 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Tooltip for buttons */
+#tts-controls .button[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin-bottom: 0.5em;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Accessibility */
+#tts-controls button:focus,
+#tts-controls input:focus,
+#tts-controls select:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    #tts-controls {
+        border: 2px solid white;
+    }
+
+    .storybook-page.tts-reading {
+        border-left-width: 6px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .storybook-page,
+    #tts-controls .button,
+    #tts-play-pause-icon {
+        transition: none;
+    }
+
+    .storybook-page.tts-reading {
+        animation: none;
+    }
+
+    @keyframes pulse-reading {
+        0%, 100% {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+        }
+    }
+}

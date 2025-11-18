@@ -1,0 +1,334 @@
+﻿<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+  <title>404 Not Found LAB</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/custom-responsive.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="is-preload">
+
+  <!-- Wrapper -->
+  <div id="wrapper" class="fade-in">
+
+    <!-- Intro -->
+    <div id="intro">
+      <h1>404 Not Found LAB<br /></h1>
+      <h3>상처받은 아이들의 마음을 치유하는 실험실에 오신 것을 환영합니다.</h3>
+      <p>아이들의 회복과 성장을 돕기 위한 치유 동화 프로젝트</p>
+      <ul class="actions">
+        <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">시작하기</a></li>
+      </ul>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+      <p class="logo">Save with Fairytale</p>
+    </header>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul class="links">
+        <li class="active"><a href="index.html">메인 페이지</a></li>
+        <li><a href="generic.html">동화 보기</a></li>
+        <li><a href="elements.html">더 알아보기</a></li>
+        <li><a href="children.html">아이 정보 등록</a></li>
+      </ul>
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+
+      <!-- Featured Post -->
+      <article class="post featured">
+        <header class="major">
+          <span class="date">아이의 마음이 회복되는 순간</span>
+          <h2><a href="#">작은 희망이 모여<br />큰 사랑이 됩니다</a></h2>
+          <p>
+            세상에는 아직도 도움이 필요한 아이들이 있습니다.<br />
+            우리의 따뜻한 마음과 관심이 그들에게 힘이 될 수 있습니다.<br />
+            이 프로젝트는 그 아이들에게 ‘다시 웃을 수 있는 이유’를 선물합니다.
+          </p>
+        </header>
+        <a href="elements.html" class="image main"><img src="images/pic01.jpg" alt="아이를 위한 치유 동화 이미지" /></a>
+        <ul class="actions special">
+          <li><a href="elements.html" class="button large">자세히 보기</a></li>
+        </ul>
+      </article>
+
+
+
+
+      <!-- Story Form -->
+      <section class="story-tabs" aria-label="동화 생성 입력 방식 선택">
+        <!-- 탭 버튼 -->
+        <div class="tab-buttons" role="tablist" aria-orientation="horizontal">
+          <button id="tab-info" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-info">
+            아동 정보 입력
+          </button>
+          <button id="tab-free" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-free">
+            직접 이야기 쓰기
+          </button>
+        </div>
+
+        <!-- 탭 내용 -->
+        <div class="tab-panels-viewport">
+          <div class="tab-panels-track" id="tabTrack" style="transform: translateX(0%);">
+
+            <!-- Panel 1: 아동 정보 입력 -->
+            <div id="panel-info" class="tab-panel" role="tabpanel" aria-labelledby="tab-info">
+              <form id="storyForm">
+                <div class="fields two-col">
+                  <div class="field full">
+                    <h2>치유 동화 만들기</h2>
+                  </div>
+
+                  <div class="field">
+                    <label for="childIdInput">아이 번호</label>
+                    <input type="number" id="childIdInput" placeholder="예: 206990" />
+                    <button type="button" id="childIdLookupBtn" class="button small"
+                      style="margin-top: 0.5em; background: #ddb45b; color: #ffffff; border: none;">아이 번호 찾기</button>
+                  </div>
+
+                  <div class="field">
+                    <label for="childName">아이 이름</label>
+                    <input type="text" name="childName" id="childName" placeholder="이름을 입력하세요" required />
+                  </div>
+
+                  <div class="field">
+                    <label for="childAge">아이 나이</label>
+                    <input type="number" name="childAge" id="childAge" placeholder="0" min="1" max="18" required />
+                  </div>
+
+                  <div class="field">
+                    <label for="abuseType">학대 유형</label>
+                    <select name="abuseType" id="abuseType" required>
+                      <option value="">선택하세요</option>
+                      <option value="physical">신체적 학대</option>
+                      <option value="verbal">언어적 학대</option>
+                      <option value="neglect">방임</option>
+                      <option value="emotional">정서적 학대</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="childInterests">아이의 관심사</label>
+                    <input type="text" name="childInterests" id="childInterests" placeholder="예: 동물, 자연, 그림 그리기 등" />
+                  </div>
+
+                  <div class="field full">
+                    <label for="childSituation">아이의 현재 상황</label>
+                    <textarea name="childSituation" id="childSituation" rows="5"
+                      placeholder="아이의 현재 상태나 상황을 구체적으로 적어주세요. 입력 내용은 치유 동화를 생성하는 데 활용됩니다." required></textarea>
+                  </div>
+                </div>
+
+                <ul class="actions">
+                  <li><input type="submit" value="치유 동화 만들기" class="primary" /></li>
+                  <li><a href="/create_input" class="button">동화 만들러가기 (음성)</a></li>
+                </ul>
+
+                <div id="loadingMessage" style="display:none; margin-top: 20px;">
+                  <p style="color: #000000; text-align: center;">
+                    <span class="icon solid fa-spinner fa-spin"></span>
+                    동화를 생성하고 있습니다... 잠시만 기다려주세요.
+                  </p>
+                </div>
+              </form>
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Panel 2: 직접 이야기 쓰기 -->
+            <div id="panel-free" class="tab-panel" role="tabpanel" aria-labelledby="tab-free">
+              <form id="childStoryForm">
+                <div class="fields">
+                  <div class="field full">
+                    <h2>직접 작성한 이야기</h2>
+                    <label for="childFreeText">아이를 위한 글을 적어주세요</label>
+
+                    <!-- textarea + 마이크 버튼 컨테이너 -->
+                    <div style="position: relative; margin-bottom: 1em;">
+                      <textarea id="childFreeText" rows="8" placeholder="직접 아이에게 전하고 싶은 말을 적어주세요." style="width: 100%; padding-right: 60px;"></textarea>
+                      <button type="button" id="micBtn" class="mic-btn" aria-pressed="false" title="음성으로 입력"
+                        style="position: absolute; top: 10px; right: 10px; width: 45px; height: 45px; border-radius: 50%; border: 2px solid #ddb45b; background: #ffffff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        MIC
+                      </button>
+                    </div>
+
+                    <!-- 상태 메시지 -->
+                    <small id="micStatus" aria-live="polite" style="display:block; margin-bottom: 0.8em; color:#667eea; font-weight: 500; min-height: 20px;"></small>
+
+                    <!-- 안내문 -->
+                    <p style="margin:0; padding: 0.8em 1em; background: #f8f9fa; border-left: 3px solid #ddb45b; border-radius: 4px; font-size: 0.9em; color: #666;">
+                      [INFO] 입력하신 내용은 검토 후 동화로 재구성되며, 개인정보는 저장되지 않습니다.
+                    </p>
+                  </div>
+                </div>
+
+                <ul class="actions">
+                  <li><input type="submit" value="직접 동화 생성" class="primary" /></li>
+                </ul>
+
+                <div id="childLoadingMessage" style="display:none; margin-top: 20px;">
+                  <p style="color: #000000; text-align: center;">
+                    <span class="icon solid fa-spinner fa-spin"></span>
+                    동화를 생성하고 있습니다... 잠시만 기다려주세요.
+                  </p>
+                </div>
+              </form>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer id="footer">
+      <section class="split contact">
+        <section class="alt">
+          <h3>주소</h3>
+          <p>광주광역시 ○○구 ○○로 ○○<br />Child Healing Project</p>
+        </section>
+        <section>
+          <h3>전화</h3>
+          <p><a href="#">010-0000-0000</a></p>
+        </section>
+        <section>
+          <h3>이메일</h3>
+          <p><a href="#">help@fairytale.org</a></p>
+        </section>
+        <section>
+          <h3>소셜</h3>
+          <ul class="icons alt">
+            <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+          </ul>
+        </section>
+      </section>
+    </footer>
+
+    <!-- Copyright -->
+    <div id="copyright">
+      <ul>
+        <li>&copy; Save with Fairytale</li>
+        <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/app-config.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/child-lookup.js"></script>
+  <script src="assets/js/story-tabs.js"></script>
+  <script src="assets/js/storybook-optimized.js"></script>
+  <script>
+    (function () {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const micBtn = document.getElementById('micBtn');
+      const textarea = document.getElementById('childFreeText');
+      const micStatus = document.getElementById('micStatus');
+
+      if (!SpeechRecognition) {
+        // 지원 안 되는 브라우저
+        micStatus.textContent = '이 브라우저는 음성 입력을 지원하지 않습니다. (Chrome/Edge 권장)';
+        return;
+      }
+
+      let recognizing = false;
+      const rec = new SpeechRecognition();
+      rec.lang = 'ko-KR';
+      rec.interimResults = true;   // 말하는 중간중간 결과도 받기
+      rec.continuous = false;      // 한 번 말하고 멈춤(필요시 true)
+
+      function setUI(active, msg) {
+        recognizing = active;
+        micBtn.setAttribute('aria-pressed', String(active));
+        micBtn.style.background = active ? '#ffe8cc' : '#fff';
+        micStatus.textContent = msg || (active ? '듣는 중… 마치면 잠시 기다려 주세요.' : '');
+      }
+
+      micBtn.addEventListener('click', () => {
+        if (!recognizing) {
+          try { rec.start(); setUI(true, '마이크 권한을 허용해 주세요.'); }
+          catch (e) { console.error(e); }
+        } else {
+          rec.stop(); // 수동 정지
+        }
+      });
+
+      rec.onstart = () => setUI(true, '듣는 중… 또박또박 말씀해 주세요.');
+      rec.onend = () => setUI(false, '');
+      rec.onerror = (e) => {
+        console.error('Speech error:', e);
+        setUI(false, '음성 인식 중 오류가 발생했습니다.');
+      };
+
+      rec.onresult = (e) => {
+        let finalTranscript = '';
+        let interimTranscript = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const t = e.results[i][0].transcript;
+          if (e.results[i].isFinal) finalTranscript += t;
+          else interimTranscript += t;
+        }
+        // interim은 상태줄에만 표시
+        if (interimTranscript) micStatus.textContent = '듣는 중… ' + interimTranscript;
+
+        // 최종 결과는 textarea에 반영 (기존 내용 뒤에 이어붙임)
+        if (finalTranscript) {
+          const sep = textarea.value && !textarea.value.endsWith('\n') ? '\n' : '';
+          textarea.value = (textarea.value || '') + sep + finalTranscript.trim();
+          micStatus.textContent = '입력이 완료되었습니다.';
+        }
+      };
+    })();
+  </script>
+
+</body>
+
+</html>

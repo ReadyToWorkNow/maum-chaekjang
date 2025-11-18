@@ -54,20 +54,13 @@ app.use(cors({
 
 app.use(express.json({ limit: '2mb', type: 'application/json' }));
 
-// Legacy HTML 페이지 서빙
-const legacyPath = path.join(__dirname, 'legacy-pages');
-app.use(express.static(legacyPath, {
-  setHeaders: (res, filePath) => {
-    const ct = res.getHeader('Content-Type');
-    if (ct && (/^text\//.test(ct) || ct.startsWith('application/javascript'))) {
-      res.setHeader('Content-Type', `${ct}; charset=utf-8`);
-    }
-  },
-}));
-
-// 루트 경로(/)로 접속 시 index.html 서빙
+// API 서버 헬스체크
 app.get('/', (req, res) => {
-  res.sendFile(path.join(legacyPath, 'index.html'));
+  res.json({
+    status: 'ok',
+    message: 'Maum Chaekjang Backend API Server',
+    version: '1.0.0'
+  });
 });
 
 // 공통 헤더 (예: 보안 헤더 일부)
