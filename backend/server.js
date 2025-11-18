@@ -55,7 +55,8 @@ app.use(cors({
 app.use(express.json({ limit: '2mb', type: 'application/json' }));
 
 // Legacy HTML 페이지 서빙
-app.use(express.static(path.join(__dirname, 'legacy-pages'), {
+const legacyPath = path.join(__dirname, 'legacy-pages');
+app.use(express.static(legacyPath, {
   setHeaders: (res, filePath) => {
     const ct = res.getHeader('Content-Type');
     if (ct && (/^text\//.test(ct) || ct.startsWith('application/javascript'))) {
@@ -63,6 +64,11 @@ app.use(express.static(path.join(__dirname, 'legacy-pages'), {
     }
   },
 }));
+
+// 루트 경로(/)로 접속 시 index.html 서빙
+app.get('/', (req, res) => {
+  res.sendFile(path.join(legacyPath, 'index.html'));
+});
 
 // 공통 헤더 (예: 보안 헤더 일부)
 app.use((req, res, next) => {
