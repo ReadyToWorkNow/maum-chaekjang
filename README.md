@@ -191,9 +191,9 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 ### 시연 영상
 
-[![시연 영상](https://img.shields.io/badge/▶️_시연_영상_보기-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://github.com/ReadyToWorkNow/maum-chaekjang/raw/main/docs/시연영상.mp4)
+[![시연 영상](https://img.shields.io/badge/▶️_시연_영상_보기-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/BMygsethsNo)
 
-> 위 버튼을 클릭하여 시연 영상을 확인하세요.
+> 위 버튼을 클릭하여 YouTube에서 시연 영상을 확인하세요.
 
 ### 현재 상태
 
