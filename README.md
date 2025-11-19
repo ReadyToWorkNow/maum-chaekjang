@@ -189,6 +189,12 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 **데모 사이트**: https://maum-chaekjang-web.onrender.com
 
+**시연 영상**: [docs/시연영상.mp4](docs/시연영상.mp4)
+
+### 현재 상태
+
+기능 테스트 중입니다 (현재 동화 생성 부분 접근 제한)
+
 ### 테스트 방법
 
 **음성 기반 동화 생성**
