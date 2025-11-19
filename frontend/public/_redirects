@@ -1,0 +1,3 @@
+# SPA fallback - all routes should serve index.html except for landing pages
+/landing/* /landing/:splat 200
+/* /index.html 200
