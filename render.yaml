@@ -1,0 +1,53 @@
+services:
+  # Backend Service - Express API + Static HTML
+  - type: web
+    name: story-backend
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SUPERTONE_API_KEY
+        sync: false
+      - key: SUPERTONE_BASE_URL
+        value: https://api.supertone.ai
+      - key: FRONTEND_URL
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true
+
+  # Frontend Service - React SPA (New)
+  - type: web
+    name: maum-chaekjang-web
+    runtime: static
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+    routes:
+      - type: rewrite
+        source: /landing/*
+        destination: /landing/:splat
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    autoDeploy: true
