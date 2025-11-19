@@ -2,6 +2,8 @@
 
 > 아이들의 마음을 치유하는 AI 동화 생성 플랫폼
 
+[![기획서 보기](https://img.shields.io/badge/📄_기획서_보기-4285F4?style=for-the-badge)](https://github.com/ReadyToWorkNow/maum-chaekjang/blob/main/404_NOT_FOUND_LAB_마음의책장_기획서.pdf)
+
 ---
 
 ## 프로젝트 소개
