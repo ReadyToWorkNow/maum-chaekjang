@@ -75,8 +75,19 @@
       <section style="max-width: 800px; margin: 4em auto; text-align: center; padding: 3em 2em;">
         <h2 style="font-size: 2.5em; margin-bottom: 0.5em; color: #212931;">치유 동화를 만들어보세요</h2>
         <p style="font-size: 1.2em; margin-bottom: 2em; color: #666; text-align: center;">아이의 목소리로 이야기를 들려주면 맞춤형 동화책을 만들어드립니다</p>
-        <a href="../create_input" class="button primary" style="font-size: 1.5em; padding: 1.2em 3em; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; line-height: 1; text-decoration: none;">동화 만들러가기</a>
+        <button onclick="navigateToCreateInput()" class="button primary" style="font-size: 1.5em; padding: 1.2em 3em; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; line-height: 1; text-decoration: none; cursor: pointer; border: none;">동화 만들러가기</button>
       </section>
+
+      <script>
+        function navigateToCreateInput() {
+          const currentPath = window.location.pathname;
+          if (currentPath.includes("/landing/")) {
+            window.location.href = "/create_input";
+          } else {
+            window.location.href = "/create_input";
+          }
+        }
+      </script>
 
 
     </div>
