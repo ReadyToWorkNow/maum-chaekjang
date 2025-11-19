@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { AudioRecorder } from "@/utils/audioRecorder";
 
 // Backend proxy URL (CORS 우회)
-const WEBHOOK_URL = "https://story-backend-51cl.onrender.com/api/proxy/voice-recording";
+const WEBHOOK_URL = "https://story-backend.onrender.com/api/proxy/voice-recording";
 
 const CreateInput = () => {
   const [isRecording, setIsRecording] = useState(false);

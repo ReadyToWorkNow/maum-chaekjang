@@ -10,6 +10,8 @@
 
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
+const FormData = require('form-data');
 let fetch = null;
 try {
   // Node 18+ 는 글로벌 fetch 제공. 없을 경우 node-fetch 로 폴백
@@ -35,6 +37,7 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://maum-chaekjang-web.onrender.com',
   'https://story-frontend-ozbq.onrender.com'
 ].filter(Boolean);
 
@@ -706,36 +709,59 @@ app.listen(PORT, () => {
 /* ------------------------------
  * n8n 웹훅 프록시 (CORS 우회)
  * ------------------------------ */
-app.post('/api/proxy/voice-recording', async (req, res) => {
+const upload = multer({ storage: multer.memoryStorage() });
+
+app.post('/api/proxy/voice-recording', upload.single('audio'), async (req, res) => {
   console.log('[INFO] Voice recording webhook proxy request received');
 
   try {
     const n8nWebhookUrl = 'https://robotshin.app.n8n.cloud/webhook/voice_recording';
 
-    // n8n 웹훅으로 요청 전달
+    if (!req.file) {
+      console.error('[ERROR] No audio file in request');
+      return typeJson(res).status(400).json({ error: 'No audio file provided' });
+    }
+
+    console.log('[INFO] Audio file received:', {
+      filename: req.file.originalname,
+      size: req.file.size,
+      mimetype: req.file.mimetype
+    });
+
+    // FormData 생성 및 오디오 파일 추가
+    const formData = new FormData();
+    formData.append('audio', req.file.buffer, {
+      filename: req.file.originalname,
+      contentType: req.file.mimetype
+    });
+
+    // 추가 메타데이터
+    if (req.body.timestamp) formData.append('timestamp', req.body.timestamp);
+    if (req.body.mimeType) formData.append('mimeType', req.body.mimeType);
+    if (req.body.size) formData.append('size', req.body.size);
+
+    // n8n 웹훅으로 FormData 전달
     const response = await fetch(n8nWebhookUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': req.headers['content-type'] || 'application/json',
-      },
-      body: JSON.stringify(req.body),
+      body: formData,
+      headers: formData.getHeaders()
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('❌ n8n 웹훅 오류:', response.status, errorText);
+      console.error('[ERROR] n8n webhook failed:', response.status, errorText);
       return typeJson(res).status(response.status).json({
-        error: 'n8n 웹훅 호출 실패',
+        error: 'n8n webhook failed',
         details: errorText
       });
     }
 
     const data = await response.json();
-    console.log('✅ n8n 웹훅 응답 성공');
+    console.log('[SUCCESS] n8n webhook response received');
 
     return typeJson(res).json(data);
   } catch (error) {
-    console.error('❌ 웹훅 프록시 처리 오류:', error);
+    console.error('[ERROR] Webhook proxy error:', error);
     return typeJson(res).status(500).json({ error: error.message });
   }
 });
