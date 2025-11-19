@@ -80,11 +80,17 @@
 
       <script>
         function navigateToCreateInput() {
-          const currentPath = window.location.pathname;
-          if (currentPath.includes('/landing/')) {
-            window.location.href = '/create_input';
-          } else {
-            window.location.href = '/create_input';
+          console.log('[Landing] 버튼 클릭됨');
+          console.log('[Landing] 현재 URL:', window.location.href);
+
+          const targetUrl = '/auth';
+          console.log('[Landing] 이동 목표:', window.location.origin + targetUrl);
+
+          try {
+            window.location.href = targetUrl;
+          } catch (error) {
+            console.error('[Landing] 네비게이션 에러:', error);
+            alert('페이지 이동 중 오류가 발생했습니다.');
           }
         }
       </script>
