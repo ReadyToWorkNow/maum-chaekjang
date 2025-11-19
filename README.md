@@ -191,9 +191,9 @@ VITE_SUPABASE_URL=https://....supabase.co
 
 ### 시연 영상
 
-<video src="https://github.com/ReadyToWorkNow/maum-chaekjang/raw/main/docs/시연영상.mp4" controls width="100%" style="max-width: 800px;">
-  시연 영상을 재생할 수 없습니다. <a href="docs/시연영상.mp4">여기를 클릭</a>하여 다운로드하세요.
-</video>
+[![시연 영상](https://img.shields.io/badge/▶️_시연_영상_보기-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://github.com/ReadyToWorkNow/maum-chaekjang/raw/main/docs/시연영상.mp4)
+
+> 위 버튼을 클릭하여 시연 영상을 확인하세요.
 
 ### 현재 상태
 
