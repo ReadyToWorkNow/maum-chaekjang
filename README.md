@@ -194,8 +194,12 @@ VITE_SUPABASE_URL=https://....supabase.co
 **음성 기반 동화 생성**
 1. [데모 사이트](https://maum-chaekjang-web.onrender.com) 접속
 2. "동화 만들러가기" 버튼 클릭
-3. 마이크 버튼을 눌러 음성 녹음
-4. 녹음 완료 후 자동으로 동화 생성
+3. 인증 코드 입력 (다음 중 하나 사용)
+   - `storytest`
+   - `maum2025`
+   - `404notfound`
+4. 마이크 버튼을 눌러 음성 녹음
+5. 녹음 완료 후 자동으로 동화 생성
 
 ---
 
